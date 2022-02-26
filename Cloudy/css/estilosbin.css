@@ -1,0 +1,17 @@
+.archivos {
+    display: flex;
+}
+
+.archivos h3{
+    font-size: 36px;
+    padding-left: 3%;
+    padding-top: 5%;
+    margin-right: 60%;
+}
+
+.archivos b{
+    font-size: 20px;
+    padding-left: 3%;
+    padding-top: 3%;
+
+}
