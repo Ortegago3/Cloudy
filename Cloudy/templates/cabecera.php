@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Cloudy</title>
-        <link rel="stylesheet" href="css/c.css">
+        <link rel="stylesheet" href="css/es.css">
         <link rel="icon" href="icos/Cloudy.ico">
         <script src="https://kit.fontawesome.com/cc21c1d6c9.js" crossorigin="anonymous"></script>
         <meta name="robots" content="noindex">
