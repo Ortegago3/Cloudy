@@ -8,3 +8,11 @@ CREATE TABLE IF NOT EXISTS archivos (
     ruta VARCHAR(100) NOT NULL,
     tipo VARCHAR(100) NOT NULL
     );
+    
+CREATE TABLE IF NOT EXIST papelera (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    usuario VARCHAR(60) NOT NULL,
+    fecha DATE NOT NULL,
+    ruta VARCHAR(100) NOT NULL,
+    tipo VARCHAR(100) NOT NULL
+    ); 
