@@ -135,9 +135,18 @@ header {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 18.4%);
-    grid-template-rows: auto;
-    gap: 2%;
+    grid-template-columns: repeat(auto-fill, minmax(180px,180px));
+    grid-template-rows: 250px;
+    row-gap: 3%;
+    column-gap: 2%;
+    grid-column-end: 0;
+    overflow: auto;
+    text-align: center;
+}
+
+.archivo{
+    width: 180px;
+    height: 180px;
 }
 
 .subir input{
