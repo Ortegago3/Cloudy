@@ -8,14 +8,14 @@ $conn = conexion();
 if (isset($_POST['submit'])){
     if(is_uploaded_file($_FILES['archivo']['tmp_name'])){
         
-        $directorio = "../Archivos/";
+        $directorio = "Archivos/";
         $nombre = ($_FILES['archivo']['name']);
         $subir = $directorio . $nombre;
         $fecha = date("y/m/d");
 
         if(move_uploaded_file($_FILES['archivo']['tmp_name'], $subir)){
-
-            $query = "INSERT INTO archivos(usuario, fecha, ruta) VALUES ('correo@correo.com', '$fecha', '$subir')";
+            
+            $query = "INSERT INTO archivos(usuario, fecha, ruta, tipo) VALUES ('correo@correo.com', '$fecha', '".$_FILES['archivo']['name']."', '".$_FILES['archivo']['type']."')";
 
             if(mysqli_query($conn, $query)){
                 echo "<script src='css/redireccionar.js'></script>";
