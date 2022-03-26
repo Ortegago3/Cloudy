@@ -1,29 +1,48 @@
-<?php include("templates/cabecera.php"); 
+<?php 
 
-    include 'admin/config/db.php';
-    $conn = conexion();
-    $archivos = "SELECT * FROM archivos WHERE usuario='correo@correo.com'";
+include("templates/cabecera.php");
+
+include("admin/config/db.php");
+
+$conn = conexion();
+if (isset($_POST['submit'])){
+    if(is_uploaded_file($_FILES['archivo']['tmp_name'])){
+        
+        $directorio = "Archivos/";
+        $nombre = ($_FILES['archivo']['name']);
+        $subir = $directorio . $nombre;
+        $fecha = date("y/m/d");
+
+        if(move_uploaded_file($_FILES['archivo']['tmp_name'], $subir)){
+            
+            $query = "INSERT INTO archivos(usuario, fecha, ruta, tipo) VALUES ('correo@correo.com', '$fecha', '".$_FILES['archivo']['name']."', '".$_FILES['archivo']['type']."')";
+
+            if(mysqli_query($conn, $query)){
+                echo "<script src='css/redireccionar.js'></script>";
+            }
+
+        }
+
+
+    }
+}
+
 ?>
 
-    <article class="archivos">
-        <div class="boton-subir">
-            <a href="subir.php">
-                <div class="boton-contenido">
-                    <i class="fa-solid fa-angle-up"></i><b>Subir</b>
-                </div>
-            </a>
+    <script>window</script>
+
+    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
+        <div class="subir">
+            <label for="archivo">
+                <i class="fa-solid fa-upload"></i> <br><br><br>
+                <b id="subir">Cargar un archivo desde el ordenador.</b>
+            </label>
+            <input type="file" id="archivo" name="archivo">
         </div>
-        
-        <div class="archivos-usuario container">
-            <?php $resultado = mysqli_query($conn, $archivos);
-
-            while($row=mysqli_fetch_assoc($resultado)) {
-            ?>
-           <div><?php echo $row["ruta"] ?></div>
-            <?php } mysqli_free_result($resultado);?>
+        <div class="submit">
+            <input type="submit" name="submit" value="Subir">    
         </div>
-    </article>    
 
-        
-<?php include("templates/pie.php"); ?>
+    </form>
 
+<?php include("templates/pie.php")?>
