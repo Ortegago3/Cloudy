@@ -3,6 +3,8 @@
     include 'admin/config/db.php';
     $conn = conexion();
     $archivos = "SELECT * FROM archivos WHERE usuario='correo@correo.com'";
+
+
 ?>
     <article class="archivos">
         <div class="boton-subir">
@@ -16,9 +18,21 @@
         <div class="archivos-usuario container">
             <?php $resultado = mysqli_query($conn, $archivos);
 
-            while($row=mysqli_fetch_assoc($resultado)) {
+            while($row = mysqli_fetch_assoc($resultado)) {
+                $tipo = $row
             ?>
-           <div><?php echo $row["ruta"] ?></div>
+           <div overflow='auto'>
+               <?php 
+                    echo "<a href='descargarFile.php?file=" .$row['ruta']. "' class='btn btn-info btn-block'>";
+                    if ($row['tipo'] == 'image/png'){
+                        echo "<img src='Archivos/".$row['ruta']."' class='archivo'>";
+                    } else if ($row['tipo'] == 'application/pdf'){
+                        echo "<img src='icos/pdf-icon.png' class='archivo'>";
+                    }
+                    echo "</a>";
+                    echo $row["ruta"];
+                ?>
+           </div>
             <?php } mysqli_free_result($resultado);?>
         </div>
     </article>    
