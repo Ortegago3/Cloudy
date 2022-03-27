@@ -1,18 +1,29 @@
 CREATE DATABASE cloudy;
 USE cloudy;
 
-CREATE TABLE IF NOT EXISTS archivos (
+CREATE TABLE usuarios{
+    contraseña VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) NOT NULL PRIMARY KEY
+} ENGINE = 'InnoDB' DEFAULT CHARSET = LATIN1;
+
+CREATE TABLE archivos (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     usuario VARCHAR(60) NOT NULL,
     fecha DATE NOT NULL,
     ruta VARCHAR(100) NOT NULL,
-    tipo VARCHAR(100) NOT NULL
+    tipo VARCHAR(100) NOT NULL,
+    FOREIGN KEY (usuario) REFERENCES usuarios(correo)
     );
     
-CREATE TABLE IF NOT EXIST papelera (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE papelera (
+    id INT NOT NULL,
     usuario VARCHAR(60) NOT NULL,
     fecha DATE NOT NULL,
     ruta VARCHAR(100) NOT NULL,
-    tipo VARCHAR(100) NOT NULL
+    tipo VARCHAR(100) NOT NULL,
+    FOREIGN KEY (usuario) REFERENCES archivos(usuario),
+    FOREIGN KEY (fecha) REFERENCES archivos(fecha),
+    FOREIGN KEY (ruta) REFERENCES archivos(ruta),
+    FOREIGN KEY (tipo) REFERENCES archivos(tipo),
+    FOREIGN KEY (id) REFERENCES archivos(id)
     ); 
