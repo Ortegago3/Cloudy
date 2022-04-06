@@ -28,6 +28,8 @@
                         echo "<img src='Archivos/".$row['ruta']."' class='archivo'>";
                     } else if ($row['tipo'] == 'application/pdf'){
                         echo "<img src='icos/pdf-icon.png' class='archivo'>";
+                    } else if ($row['tipo'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $row['tipo'] == 'application/vnd.ms-excel'){
+                        echo "<img src='icos/excel-icon.png' class='archivo'>";
                     }
                     echo "</a>";
                     echo $row["ruta"];
