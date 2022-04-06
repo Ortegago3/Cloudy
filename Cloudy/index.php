@@ -32,7 +32,10 @@
                         echo "<img src='icos/excel-icon.png' class='archivo'>";
                     } else if ($row['tipo'] == 'image/jpeg'){
                         echo "<img src='Archivos/".$row['ruta']."' class='archivo'>";
+                    } else if ($row['tipo'] == 'application/msword'){
+                        echo "<img src='icos/word-icon.png' class='archivo'>";
                     }
+
                     echo "</a>";
                     echo $row["ruta"];
                 ?>
